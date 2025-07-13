@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级网页导航面板</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 背景装饰元素 */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff00cc, #333399);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .element-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+        
+        .element-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            right: -200px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        
+        .button-card {
+            perspective: 1000px;
+            height: 180px;
+        }
+        
+        .btn-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .button-card:hover .btn-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .btn-front, .btn-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-front {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .btn-back {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            transform: rotateY(180deg);
+            cursor: pointer;
+        }
+        
+        .btn-back:hover {
+            background: linear-gradient(45deg, #7e22ce, #3b82f6);
+        }
+        
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .btn-front h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .btn-front p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .btn-back h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn-back p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .button-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .button-card {
+                height: 160px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 底部装饰 */
+        .footer {
+            margin-top: 50px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰元素 -->
+    <div class="bg-element element-1"></div>
+    <div class="bg-element element-2"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>网页导航面板</h1>
+            <p>张子恒制作</p>
+        </div>
+        
+        <div class="button-grid">
+            <!-- 按钮 1: Google -->
+            <div class="button-card">
+                <div class="btn-inner">
+                    <div class="btn-front">
+                        <div class="icon">
+                            <i class=" "></i>
+                        </div>
+                        <h3>我的世界有关</h3>
+                        <p>PCL2、PCL2_CE……</p>
+                    </div>
+                    <div class="btn-back" onclick="openWebsite('https://zh591.github.io/mc/MC.HTML')">
+                        <h3>PCL2、PCL2_CE……</h3>
+                        <p>点击访问</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 按钮 2: YouTube -->
+            <div class="button-card">
+                <div class="btn-inner">
+                    <div class="btn-front">
+                        <div class="icon">
+                            <i class=" "></i>
+                        </div>
+                        <h3>网页小游戏程序</h3>
+                        <p>自己编的网页小游戏程序</p>
+                    </div>
+                    <div class="btn-back" onclick="openWebsite('https://zh591.github.io/a-2/game.HTML')">
+                        <h3> </h3>
+                        <p>点击访问</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 按钮 3: GitHub -->
+            <div class="button-card">
+                <div class="btn-inner">
+                    <div class="btn-front">
+                        <div class="icon">
+                            <i class=" "></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>GitHub</p>
+                    </div>
+                    <div class="btn-back" onclick="openWebsite('https://www.github.com')">
+                        <h3>GitHub</h3>
+                        <p>点击访问</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 按钮 4: Wikipedia -->
+            <div class="button-card">
+                <div class="btn-inner">
+                    <div class="btn-front">
+                        <div class="icon">
+                            <i class=" "></i>
+                        </div>
+                        <h3>比较好的网页小游戏</h3>
+                        <p> </p>
+                    </div>
+                    <div class="btn-back" onclick="openWebsite('https://slowroads.io/#O1-56b045e6@4.40')">
+                        <h3> </h3>
+                        <p>点击访问</p>
+                    </div>
+                </div>
+            </div>
+            
+           
+        
+        <div class="footer">
+            <p>网页导航面板</p>
+        </div>
+    </div>
+    
+    <script>
+        function openWebsite(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
